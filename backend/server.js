@@ -7,10 +7,16 @@ var express = require('express');
 var gcm = require('node-gcm');
 var app = express();
 
+app.use(express.static(__dirname + '/../frontend'));
+
 var arr = [];
 
 app.get('/', function (req, res) {
-    res.send(arr);
+    res.sendfile('/../frontend/index.html');
+});
+
+app.get('/users', function (req, res) {
+    res.json(arr);
 });
 
 var message = new gcm.Message();
@@ -23,7 +29,7 @@ app.get('/send', function (req, res) {
 
     sender.send(message, { registrationTokens: arr}, function (err, response) {
         if(err) console.error('test');
-        else 	console.log(response);
+        else 	console.log("good");
     });
 
 });
