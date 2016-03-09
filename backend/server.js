@@ -4,10 +4,15 @@
 
 
 var express = require('express');
+var mongoose = require('mongoose');
 var gcm = require('node-gcm');
 var app = express();
 
+var gamesAPI = require('gamesAPI');
+
 app.use(express.static(__dirname + '/../frontend'));
+
+app(gamesAPI);
 
 var arr = [];
 
@@ -34,13 +39,7 @@ app.get('/send', function (req, res) {
 
 });
 
-app.post('/post', function (req, res) {
 
-   console.log('something is here');
-    console.log(req.headers.token);
-    arr.push(req.headers.token);
-
-});
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
