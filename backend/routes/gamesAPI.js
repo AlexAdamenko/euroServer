@@ -3,7 +3,7 @@
  */
 
 
-var Game = require('/models/Game.js');
+var Game = require('../models/Game.js');
 
 module.exports=function(app){
 
@@ -14,7 +14,7 @@ module.exports=function(app){
 
             if (err)
                 res.send(err);
-
+ 
             res.json(games);
         });
     });

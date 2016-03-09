@@ -4,7 +4,7 @@
 
 
 
-var regDev = require('/models/RegisteredDevice.js');
+var regDev = require('../models/RegisteredDevice.js');
 
 module.exports=function(app){
 
