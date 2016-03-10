@@ -41,8 +41,25 @@ module.exports=function(app){
         console.log(req.headers.token);
 
         regDev.create({
-            token: req.headers.token
+            token: req.headers.token,
         });
+
+    });
+
+    app.post('/update', function(req,res){
+
+        return regDev.findOne({token : req.headers.token}, function (err, item) {
+            item.game_id =  req.headers.game;
+            return item.save(function (err) {
+                if (!err) {
+                    console.log("updated");
+                } else {
+                    console.log(err);
+                }
+                return res.send(item);
+            });
+        });
+
 
     });
 

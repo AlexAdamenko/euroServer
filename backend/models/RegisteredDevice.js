@@ -9,7 +9,7 @@ var Schema = mongoose.Schema;
 
 
 var regDev = new Schema({
-    token : String,
+    token : { type: String, unique:true, sparse:true },
     game_id : String
 });
 
