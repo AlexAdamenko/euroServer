@@ -33,12 +33,24 @@ app.get('/users', function (req, res) {
     res.json(arr);
 });
 
-var message = new gcm.Message();
-message.addData('test', 'test');
+var messagePhoto = new gcm.Message({
+    data: {
+        type: 'photo',
+        message: 'Hello Android!'
+    }
+});
+
+var message = new gcm.Message({
+    data: {
+        type: 'Just simple test',
+        message: 'Hello Android!'
+    }
+});
+
 var sender = new gcm.Sender('AIzaSyBJ94GJi5PTfgzFi2fxUVBEJ6-K490A3FI');
 
 
-app.get('/send', function (req, res) {
+app.get('/takePhoto', function (req, res) {
 
          regDev.find({}, function(err, users) {
          var arr = [];
@@ -49,11 +61,33 @@ app.get('/send', function (req, res) {
 
              console.log(arr);
 
-            sender.send(message, {registrationTokens: arr}, function (err, response) {
+            sender.send(messagePhoto, {registrationTokens: arr}, function (err, response) {
                 if(err) console.error('test');
-                else 	console.log("good");
+                else 	console.log(response);
             });
         });
+
+
+
+
+});
+
+app.get('/send', function (req, res) {
+
+    regDev.find({}, function(err, users) {
+        var arr = [];
+
+        users.forEach(function(user) {
+            arr.push(user.token);
+        });
+
+        console.log(arr);
+
+        sender.send(message, {registrationTokens: arr}, function (err, response) {
+            if(err) console.error('test');
+            else 	console.log(response);
+        });
+    });
 
 
 

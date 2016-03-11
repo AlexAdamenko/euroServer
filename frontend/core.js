@@ -22,4 +22,9 @@ function mainController($scope, $http, $window) {
         $window.location.reload();
     };
 
+    $scope.sendPhotoMessage = function() {
+        $http.get('/takePhoto');
+        $window.location.reload();
+    };
+
 }

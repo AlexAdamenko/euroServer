@@ -37,12 +37,29 @@ module.exports=function(app){
 
     app.post('/post', function (req, res) {
 
-        console.log('something is here');
         console.log(req.headers.token);
+        console.log(req.headers.prevtoken);
 
-        regDev.create({
-            token: req.headers.token,
-        });
+        if(req.headers.token = req.headers.prevtoken){
+            regDev.create({
+                token: req.headers.token,
+            });
+        }else{
+            var query = { token: req.headers.prevtoken };
+            regDev.update(query, { token: req.headers.token }, function (err, item) {
+                if(err){
+                    console.log(err);
+                    return res.send(err);
+                }
+                return res.json(item);
+            });
+        }
+
+        console.log('something is here');
+
+
+
+
 
     });
 
