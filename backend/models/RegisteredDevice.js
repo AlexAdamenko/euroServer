@@ -10,7 +10,7 @@ var Schema = mongoose.Schema;
 
 var regDev = new Schema({
     token : { type: String, unique:true, sparse:true },
-    game_id : String
+    game_id : { type : Array , "default" : [] }
 });
 
 // set up a mongoose model and pass it using module.exports

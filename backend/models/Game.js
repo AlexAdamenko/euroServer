@@ -9,9 +9,11 @@ var Schema = mongoose.Schema;
 
 
 var Game = new Schema({
+    game_id : String,
     first_player : String,
     second_player : String,
     date : Date,
+    time: Date,
     stage : String
 });
 

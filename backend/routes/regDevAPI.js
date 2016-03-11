@@ -48,17 +48,17 @@ module.exports=function(app){
 
     app.post('/update', function(req,res){
 
-        return regDev.findOne({token : req.headers.token}, function (err, item) {
-            item.game_id =  req.headers.game;
-            return item.save(function (err) {
-                if (!err) {
-                    console.log("updated");
-                } else {
+        var token = req.headers.token;
+
+        return regDev.update({'token': token},
+            {$push: {"game_id": req.headers.game}}, function (err, item) {
+                if(err){
                     console.log(err);
+                    return res.send(err);
                 }
-                return res.send(item);
+                console.log('UPDATED');
+                return res.json(item);
             });
-        });
 
 
     });
