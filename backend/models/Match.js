@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 
 
 
-var Game = new Schema({
+var Match = new Schema({
     game_id : String,
     first_player : String,
     second_player : String,
@@ -18,4 +18,4 @@ var Game = new Schema({
 });
 
 // set up a mongoose model and pass it using module.exports
-module.exports = mongoose.model('Game', Game);
+module.exports = mongoose.model('Match', Match);

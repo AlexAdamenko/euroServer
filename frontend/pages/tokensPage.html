@@ -1,0 +1,27 @@
+<!-- HEADER AND TODO COUNT -->
+<div class="jumbotron text-center">
+    <h1>List of connected devices <span class="label label-info">{{ todos.length }}</span></h1>
+    <hr><hr>
+    <button ng-click="sendPhotoMessage()">
+        Send Photo messages to  thedevices
+    </button>
+    <button ng-click="sendMessage()">
+        Send messages to the devices
+    </button>
+</div>
+
+<!-- TODO LIST -->
+<table st-table="rowCollection" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Tokens</th>
+        <th>Subscriptions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="todo in todos">
+        <td>{{todo.token}}</td>
+        <td>{{todo.game_id}}</td>
+    </tr>
+    </tbody>
+</table>

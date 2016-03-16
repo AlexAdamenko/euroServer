@@ -3,14 +3,14 @@
  */
 
 
-var Game = require('../models/Game.js');
+var Match = require('../models/Match.js');
 
 module.exports=function(app){
 
     app.get('/games', function(req, res) {
         console.log("im in server get");
         console.log(req.headers);
-        Game.find(function(err, games) {
+        Match.find(function(err, games) {
 
             if (err)
                 res.send(err);
